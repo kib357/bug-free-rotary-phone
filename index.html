@@ -5,12 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
   <title>Loyalty Card</title>
   <script src="//cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <style type="text/css">
+     .close {
+        padding: 8px 24px;
+        width: 100%;
+        background: #0084ff;
+        border: 1px solid #e0e6ed;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        outline: none;
+        box-shadow: none;
+    }
+  </style>
 </head>
 <body style="font-family: Helvetica Neue; margin: 0; padding: 0; color: #3C4858;">
   <div style="margin: 24px; padding: 16px; border: 1px solid #E0E6ED; border-radius: 8px">
     <div id="qrcode" style="margin: 24px auto; max-width: 256px;"></div>
     <h3 style="margin: 0; text-align: center;">Please show this Code to the cashier</h3>
-    <button id="close" type="button">Close</button>
+  </div>
+  <div style="margin: 0 24px">
+    <button id="close" class="close" type="button">Close</button>
   </div>
   <p id="res"></p>
   <p id="err" style="color: red;"></p>
