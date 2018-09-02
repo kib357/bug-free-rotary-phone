@@ -51,12 +51,12 @@
 //       );
       
       MessengerExtensions.getUserID(
-         function success(thread_context) {
+         function success(user_ids) {
           // success
           console.log('>');
-          c.innerHTML = "Link:" + JSON.stringify(thread_context, undefined, 2);//link + thread_context.psid;
+          c.innerHTML = "Link:" + JSON.stringify(user_ids, undefined, 2);//link + thread_context.psid;
           new QRCode(document.getElementById("qrcode"), {
-            text: link + thread_context.psid,
+            text: link + user_ids.psid,
             colorDark: "#0084FF",
             colorLight: "#ffffff"
           });
