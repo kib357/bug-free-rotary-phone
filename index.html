@@ -6,8 +6,12 @@
   <title>Loyalty Card</title>
   <script src="//cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
   <style type="text/css">
+    h3 {
+      font-size: 20px
+    }
+    
      .close {
-        padding: 8px 24px;
+        padding: 12px 24px;
         width: 100%;
         background: white;
         border: 1px solid #e0e6ed;
@@ -20,29 +24,38 @@
   </style>
 </head>
 <body style="font-family: Helvetica Neue; margin: 0; padding: 0; color: #3C4858;">
-  <div style="margin: 24px; padding: 16px; border: 1px solid #E0E6ED; border-radius: 8px">
-    <div id="qrcode" style="margin: 24px auto; max-width: 256px;"></div>
-    <h3 style="margin: 0; text-align: center;">Please show this Code to the cashier</h3>
+  <div style="padding: 32px;">
+    <h3 id="title" style="margin: 0; text-align: center;"></h3>
+    <div id="qrcode" style="margin: 24px auto;"></div>    
   </div>
   <div style="margin: 0 24px">
-    <button id="close" class="close" type="button">Close</button>
+    <button id="close" class="close" type="button"></button>
   </div>
   <p id="res"></p>
   <p id="err" style="color: red;"></p>
-  <p id="context"></p>
   <p id="link" style="display: none;"></p>
   
   <script type="text/javascript">
     var url = new URL(window.location.href);
     var link = url.searchParams.get("link");
-    var l = document.getElementById("link");
-    var c = document.getElementById("context");
-    l.innerHTML = link;
+    var title = url.searchParams.get("title") || "Please show this Code to the cashier";
+    var closeText = url.searchParams.get("close-text") || "Close";
+    var qrColor = url.searchParams.get("qr-color") || "#0084FF";
+    var qrBg = url.searchParams.get("qr-bg") || "#ffffff";
+    
+    var closeBtn = document.getElementById("close");
+    closeBtn.innerHTML = closeText;
+    
+    var titleEl = document.getElementById("title");
+    titleEl.innerHTML = title;
+    
+    var linkEl = document.getElementById("link");
+    linkEl.innerHTML = link;    
   
     new QRCode(document.getElementById("qrcode"), {
       text: link,
-      colorDark : "#0084FF",
-      colorLight : "#ffffff"
+      colorDark : qrColor,
+      colorLight : qrBg
     });
     
     (function(d, s, id){
@@ -53,8 +66,7 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'Messenger'));
     
-    window.extAsyncInit = function() {
-      var closeBtn = document.getElementById("close");
+    window.extAsyncInit = function() {      
       var resP = document.getElementById("res");
       var errP = document.getElementById("err");
       
