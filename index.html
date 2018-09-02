@@ -10,7 +10,7 @@
   <div style="margin: 24px; padding: 16px; border: 1px solid #E0E6ED; border-radius: 8px">
     <div id="qrcode" style="margin: 24px auto; max-width: 256px;"></div>
     <h3 style="margin: 0; text-align: center;">Please show this Code to the cashier</h3>
-    <span id="context"></span>
+    <p id="context"></p>
   </div>
   <p id="link" style="display: none;"></p>
   
@@ -40,6 +40,7 @@
       MessengerExtensions.getContext('532160876956612', 
       function success(thread_context){
         // success
+        console.log('>');
         c.innerHTML = "Link:" + JSON.stringify(thread_context, undefined, 2);//link + thread_context.psid;
 //         new QRCode(document.getElementById("qrcode"), {
 //           text: link + thread_context.psid,
@@ -49,6 +50,7 @@
       },
       function error(err){
         // error
+        console.warn('!', err);
         c.innerHTML = "Error Occured:" + JSON.stringify(err, undefined, 2);
       }
 );
