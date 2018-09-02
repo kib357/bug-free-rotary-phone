@@ -13,14 +13,14 @@
     <div id="qrcode" style="margin: 24px auto; max-width: 256px;"></div>
     <h3 style="margin: 0; text-align: center;">Please show this Code to the cashier</h3>
   </div>
-  <p id="context"></p>
+  <p id="res"></p>
+  <p id="err" style="color: red;"></p>
   <p id="link" style="display: none;"></p>
 
   <script type="text/javascript">
     var url = new URL(window.location.href);
     var link = url.searchParams.get("link");
-    var l = document.getElementById("link");
-    var c = document.getElementById("context");
+    var l = document.getElementById("link");    
 
     (function (d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -32,41 +32,34 @@
 
     window.extAsyncInit = function () {
       // the Messenger Extensions JS SDK is done loading
-//       MessengerExtensions.getContext("532160876956612",
-//         function success(thread_context) {
-//           // success
-//           console.log('>');
-//           c.innerHTML = "Link:" + JSON.stringify(thread_context, undefined, 2);//link + thread_context.psid;
-//           new QRCode(document.getElementById("qrcode"), {
-//             text: link + thread_context.psid,
-//             colorDark: "#0084FF",
-//             colorLight: "#ffffff"
-//           });
-//         },
-//         function error(err) {
-//           // error
-//           console.warn('!', err);
-//           c.innerHTML = "Error Occured:" + JSON.stringify(err, undefined, 2);
-//         }
-//       );
-      
-      MessengerExtensions.getUserID(
-         function success(user_ids) {
-          // success
-          console.log('>');
-          c.innerHTML = "Link:" + JSON.stringify(user_ids, undefined, 2);//link + thread_context.psid;
-          new QRCode(document.getElementById("qrcode"), {
-            text: link + user_ids.psid,
-            colorDark: "#0084FF",
-            colorLight: "#ffffff"
-          });
-        },
-        function error(err) {
-          // error
-          console.warn('!', err);
-          c.innerHTML = "Error Occured:" + JSON.stringify(err, undefined, 2);
-        }
-      )
+      var resP = document.getElementById("res");
+      var errP = document.getElementById("err");
+
+      MessengerExtensions.getSupportedFeatures(function success(result) {
+        let features = result.supported_features;
+        resP.innerHTML = JSON.stringify(features, undefined, 2);
+      }, function error(err) {
+        // error retrieving supported features
+        errP.innerHTML = JSON.stringify(err, undefined, 2);
+      });
+
+      // MessengerExtensions.getContext("532160876956612",
+      //   function success(thread_context) {
+      //     // success
+      //     console.log('>');
+      //     c.innerHTML = "Link:" + JSON.stringify(thread_context, undefined, 2);//link + thread_context.psid;
+      //     new QRCode(document.getElementById("qrcode"), {
+      //       text: link + thread_context.psid,
+      //       colorDark: "#0084FF",
+      //       colorLight: "#ffffff"
+      //     });
+      //   },
+      //   function error(err) {
+      //     // error
+      //     console.warn('!', err);
+      //     c.innerHTML = "Error Occured:" + JSON.stringify(err, undefined, 2);
+      //   }
+      // );
     };
   </script>
 </body>
