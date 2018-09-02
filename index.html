@@ -40,6 +40,7 @@
       MessengerExtensions.getContext('532160876956612', 
       function success(thread_context){
         // success
+        c.innerHTML = "Link:" + link + thread_context.psid;
         new QRCode(document.getElementById("qrcode"), {
           text: link + thread_context.psid,
           colorDark : "#0084FF",
