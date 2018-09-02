@@ -40,8 +40,8 @@
     var link = url.searchParams.get("link");
     var title = url.searchParams.get("title") || "Please show this Code to the cashier";
     var closeText = url.searchParams.get("close-text") || "Close";
-    var qrColor = url.searchParams.get("qr-color") || "#0084FF";
-    var qrBg = url.searchParams.get("qr-bg") || "#ffffff";
+    var qrColor = url.searchParams.get("qr-color") || "0084FF";
+    var qrBg = url.searchParams.get("qr-bg") || "ffffff";
     
     var closeBtn = document.getElementById("close");
     closeBtn.innerHTML = closeText;
@@ -54,8 +54,8 @@
   
     new QRCode(document.getElementById("qrcode"), {
       text: link,
-      colorDark : qrColor,
-      colorLight : qrBg
+      colorDark: "#" + qrColor,
+      colorLight: "#" + qrBg
     });
     
     (function(d, s, id){
