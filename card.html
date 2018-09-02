@@ -40,7 +40,7 @@
         resP.innerHTML = JSON.stringify(features, undefined, 2);
       }, function error(err) {
         // error retrieving supported features
-        errP.innerHTML = JSON.stringify(err, undefined, 2);
+        errP.innerHTML = "getSupportedFeatures err:" + JSON.stringify(err, undefined, 2);
       });
 
       // MessengerExtensions.getContext("532160876956612",
