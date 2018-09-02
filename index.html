@@ -9,9 +9,9 @@
 <body style="font-family: Helvetica Neue; margin: 0; padding: 0; color: #3C4858;">
   <div style="margin: 24px; padding: 16px; border: 1px solid #E0E6ED; border-radius: 8px">
     <div id="qrcode" style="margin: 24px auto; max-width: 256px;"></div>
-    <h3 style="margin: 0; text-align: center;">Please show this Code to the cashier</h3>
-    <p id="context"></p>
+    <h3 style="margin: 0; text-align: center;">Please show this Code to the cashier</h3>    
   </div>
+  <p id="context"></p>
   <p id="link" style="display: none;"></p>
   
   <script type="text/javascript">
@@ -21,11 +21,11 @@
     var c = document.getElementById("context");
     l.innerHTML = link;
   
-//     new QRCode(document.getElementById("qrcode"), {
-//       text: link,
-//       colorDark : "#0084FF",
-//       colorLight : "#ffffff"
-//     });
+    new QRCode(document.getElementById("qrcode"), {
+      text: link,
+      colorDark : "#0084FF",
+      colorLight : "#ffffff"
+    });
     
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -37,16 +37,16 @@
     
     window.extAsyncInit = function() {
       // the Messenger Extensions JS SDK is done loading
-      MessengerExtensions.getContext('532160876956612', 
+      MessengerExtensions.getContext(532160876956612, 
       function success(thread_context){
         // success
         console.log('>');
         c.innerHTML = "Link:" + JSON.stringify(thread_context, undefined, 2);//link + thread_context.psid;
-//         new QRCode(document.getElementById("qrcode"), {
-//           text: link + thread_context.psid,
-//           colorDark : "#0084FF",
-//           colorLight : "#ffffff"
-//         });
+        new QRCode(document.getElementById("qrcode"), {
+          text: link + thread_context.psid,
+          colorDark : "#0084FF",
+          colorLight : "#ffffff"
+        });
       },
       function error(err){
         // error
