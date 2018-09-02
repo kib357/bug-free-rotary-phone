@@ -6,8 +6,11 @@
   <title>Loyalty Card</title>
   <script src="//cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </head>
-<body>
-  <div id="qrcode"></div>
+<body style="font-family: Helvetica Neue; margin: 0; padding: 0; color: #3C4858;">
+  <div style="margin: 24px; padding: 24px; border: 1px solid #E0E6ED; border-radius: 8px">
+    <div id="qrcode" style="margin: 32px auto; max-width: 256px;"></div>
+    <h3 style="text-align: center;">Please show the Code to cashier</h3>
+  </div>
   
   <script type="text/javascript">
     var url = new URL(window.location.href);
