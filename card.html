@@ -32,8 +32,26 @@
 
     window.extAsyncInit = function () {
       // the Messenger Extensions JS SDK is done loading
-      MessengerExtensions.getContext("532160876956612",
-        function success(thread_context) {
+//       MessengerExtensions.getContext("532160876956612",
+//         function success(thread_context) {
+//           // success
+//           console.log('>');
+//           c.innerHTML = "Link:" + JSON.stringify(thread_context, undefined, 2);//link + thread_context.psid;
+//           new QRCode(document.getElementById("qrcode"), {
+//             text: link + thread_context.psid,
+//             colorDark: "#0084FF",
+//             colorLight: "#ffffff"
+//           });
+//         },
+//         function error(err) {
+//           // error
+//           console.warn('!', err);
+//           c.innerHTML = "Error Occured:" + JSON.stringify(err, undefined, 2);
+//         }
+//       );
+      
+      MessengerExtensions.getUserID(
+         function success(thread_context) {
           // success
           console.log('>');
           c.innerHTML = "Link:" + JSON.stringify(thread_context, undefined, 2);//link + thread_context.psid;
@@ -48,7 +66,7 @@
           console.warn('!', err);
           c.innerHTML = "Error Occured:" + JSON.stringify(err, undefined, 2);
         }
-      );
+      )
     };
   </script>
 </body>
