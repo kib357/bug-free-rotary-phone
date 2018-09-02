@@ -10,9 +10,9 @@
   <div style="margin: 24px; padding: 16px; border: 1px solid #E0E6ED; border-radius: 8px">
     <div id="qrcode" style="margin: 24px auto; max-width: 256px;"></div>
     <h3 style="margin: 0; text-align: center;">Please show this Code to the cashier</h3>
+    <span id="context"></span>
   </div>
   <p id="link" style="display: none;"></p>
-  <p id="context"></p>
   
   <script type="text/javascript">
     var url = new URL(window.location.href);
@@ -21,11 +21,11 @@
     var c = document.getElementById("context");
     l.innerHTML = link
   
-    new QRCode(document.getElementById("qrcode"), {
-      text: link,
-      colorDark : "#0084FF",
-      colorLight : "#ffffff"
-    });
+//     new QRCode(document.getElementById("qrcode"), {
+//       text: link,
+//       colorDark : "#0084FF",
+//       colorLight : "#ffffff"
+//     });
     
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -40,11 +40,15 @@
       MessengerExtensions.getContext('532160876956612', 
       function success(thread_context){
         // success
-        c.innerHTML = ">>>" + JSON.stringify(thread_context, undefined, 2);
+        new QRCode(document.getElementById("qrcode"), {
+          text: link + thread_context.psid,
+          colorDark : "#0084FF",
+          colorLight : "#ffffff"
+        });
       },
       function error(err){
         // error
-        c.innerHTML = ">>>" + JSON.stringify(err, undefined, 2);
+        c.innerHTML = "Error Occured:" + JSON.stringify(err, undefined, 2);
       }
 );
     };
